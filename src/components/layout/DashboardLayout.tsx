@@ -1,6 +1,7 @@
 import { Layout, Menu, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
+import { HomeFilled, HomeOutlined, TeamOutlined } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
@@ -18,35 +19,44 @@ export default function DashboardLayout({
   };
 
   return (
-    <Layout style={{ minHeight: "100vh", minWidth: "80vw" }}>
+    <Layout style={{ minHeight: "100vh" }}>
       <Sider breakpoint="lg" collapsedWidth="0">
         <div
           style={{
-            height: 60,
-            margin: 16,
-            background: "rgba(255,255,255,0.2)",
-            borderRadius: 8,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "white",
-            fontWeight: "bold",
           }}
         >
-          Welcome {user?.name}
+          <TeamOutlined color="white" />
+          <div
+            style={{
+              height: 35,
+              margin: 16,
+              borderRadius: 8,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            Welcome {user?.name}
+          </div>
         </div>
-
-        <Menu theme="dark" mode="inline">
-          <Menu.Item key="1">
-            <Link to="/customers">Customers</Link>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Link to="/packages">Packages</Link>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Link to="/transactions">Transactions</Link>
-          </Menu.Item>
-        </Menu>
+        <div style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
+          <Menu theme="dark" mode="inline">
+            <Menu.Item key="1">
+              <Link to="/customers">Customers</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/packages">Packages</Link>
+            </Menu.Item>
+            <Menu.Item key="3">
+              <Link to="/transactions">Transactions</Link>
+            </Menu.Item>
+          </Menu>
+        </div>
       </Sider>
 
       <Layout>
@@ -59,7 +69,10 @@ export default function DashboardLayout({
             alignItems: "center",
           }}
         >
-          <h3 style={{ margin: 0 }}>Dashboard</h3>
+          <div style={{ gap: 10, display: "flex" }}>
+            <HomeFilled />
+            <h3 style={{ margin: 0 }}>Dashboard</h3>
+          </div>
 
           <Button type="primary" danger onClick={handleLogout}>
             Logout
