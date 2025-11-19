@@ -1,0 +1,16 @@
+{
+    "users" : [
+        {
+            "id" : "1", "name" : "admin", "email" : "admin1@mail.com", "password" : "qwe123"
+        }
+    ],
+    "packages" : [
+        {"id": "P001",  "name" : "Paket Harian 1GB", "price": 10000, "quota": "1GB"},
+        {"id": "P002",  "name" : "Paket Harian 2GB", "price": 20000, "quota": "2GB"},
+        {"id": "P003",  "name" : "Paket Bulanan 10GB", "price": 74990, "quota": "10GB"},
+        {"id": "P004",  "name" : "Paket Special 5G 12GB", "price": 89900, "quota": "12GB"}
+    ],
+    "transactions": [
+        {"id":"T001", "userId": "1", "packageId":"P001", "date":"2025-11-19", "status":"succes" }
+    ]
+}
