@@ -34,6 +34,13 @@ export default function LoginPage() {
       <Card title="Login" style={{ width: 360 }}>
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Name wajib diisi" }]}
+          >
+            <Input placeholder="admin" />
+          </Form.Item>
+          <Form.Item
             label="Email"
             name="email"
             rules={[
@@ -41,7 +48,7 @@ export default function LoginPage() {
               { type: "email", message: "Format email tidak valid" },
             ]}
           >
-            <Input placeholder="admin1@mail.com" />
+            <Input placeholder="Ex : admin1@mail.com" />
           </Form.Item>
 
           <Form.Item
@@ -49,7 +56,7 @@ export default function LoginPage() {
             name="password"
             rules={[{ required: true, message: "Password wajib diisi" }]}
           >
-            <Input.Password placeholder="qwe123" />
+            <Input.Password placeholder="password" />
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>
