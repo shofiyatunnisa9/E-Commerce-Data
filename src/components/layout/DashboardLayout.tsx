@@ -3,11 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
 import {
   AppstoreOutlined,
-  DollarOutlined,
   HomeFilled,
   HomeOutlined,
   SwapOutlined,
-  TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 

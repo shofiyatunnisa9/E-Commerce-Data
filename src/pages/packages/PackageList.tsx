@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Form, Input, InputNumber, message } from "antd";
+import { Button, Modal, Form, Input, InputNumber, message } from "antd";
 import {
   getPackages,
   createPackage,
