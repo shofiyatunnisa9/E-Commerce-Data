@@ -18,7 +18,7 @@ import {
 
 export default function PackageList() {
   const [packages, setPackages] = useState<PackageData[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingData, setEditingData] = useState<PackageData | null>(null);
 
@@ -30,7 +30,6 @@ export default function PackageList() {
     setPackages(res.data);
     setLoading(false);
   };
-
   useEffect(() => {
     fetchData();
   }, []);
