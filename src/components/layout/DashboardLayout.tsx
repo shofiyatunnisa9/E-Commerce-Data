@@ -1,7 +1,15 @@
 import { Layout, Menu, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
-import { HomeFilled, HomeOutlined, TeamOutlined } from "@ant-design/icons";
+import {
+  AppstoreOutlined,
+  DollarOutlined,
+  HomeFilled,
+  HomeOutlined,
+  SwapOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
@@ -20,42 +28,94 @@ export default function DashboardLayout({
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider breakpoint="lg" collapsedWidth="0">
+      <Sider
+        width={230}
+        style={{
+          minHeight: "100vh",
+          background: "linear-gradient(180deg, #001529, #003b73)",
+          paddingTop: 20,
+        }}
+      >
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            padding: "0 20px 20px",
+            marginBottom: 30,
+            borderBottom: "1px solid rgba(255,255,255,0.2)",
           }}
         >
-          <TeamOutlined color="white" />
-          <div
-            style={{
-              height: 35,
-              margin: 16,
-              borderRadius: 8,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontWeight: "bold",
-            }}
-          >
-            Welcome {user?.name}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div
+              style={{
+                width: 42,
+                height: 42,
+                borderRadius: "50%",
+                background: "#1677ff",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#fff",
+                fontWeight: 600,
+                fontSize: "16px",
+              }}
+            >
+              {user?.name?.charAt(0).toUpperCase()}
+            </div>
+
+            <div style={{ color: "white" }}>
+              <div style={{ fontSize: 14, opacity: 0.8 }}>Welcome</div>
+              <div style={{ fontSize: 16, fontWeight: "bold" }}>
+                {user?.name}
+              </div>
+            </div>
           </div>
         </div>
-        <div style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
-          <Menu theme="dark" mode="inline">
-            <Menu.Item key="1">
-              <Link to="/customers">Customers</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/packages">Packages</Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Link to="/transactions">Transactions</Link>
-            </Menu.Item>
-          </Menu>
+
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={[window.location.pathname]}
+          style={{
+            background: "transparent",
+            paddingLeft: 10,
+            paddingRight: 10,
+          }}
+          items={[
+            {
+              key: "/",
+              icon: <HomeOutlined />,
+              label: <Link to="/">Dashboard</Link>,
+            },
+            {
+              key: "/customers",
+              icon: <UserOutlined />,
+              label: <Link to="/customers">Customers</Link>,
+            },
+            {
+              key: "/packages",
+              icon: <AppstoreOutlined />,
+              label: <Link to="/packages">Packages</Link>,
+            },
+            {
+              key: "/transactions",
+              icon: <SwapOutlined />,
+              label: <Link to="/transactions">Transactions</Link>,
+            },
+          ]}
+        />
+
+        <div style={{ padding: 20, marginTop: "auto" }}>
+          <Button
+            danger
+            type="primary"
+            block
+            style={{
+              borderRadius: 6,
+              fontWeight: 600,
+            }}
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
         </div>
       </Sider>
 
@@ -73,10 +133,6 @@ export default function DashboardLayout({
             <HomeFilled />
             <h3 style={{ margin: 0 }}>Dashboard</h3>
           </div>
-
-          <Button type="primary" danger onClick={handleLogout}>
-            Logout
-          </Button>
         </Header>
 
         <Content

@@ -21,50 +21,55 @@
   ],
   "packages": [
     {
-      "id": "P001",
-      "name": "Paket Harian 1GB",
-      "price": 10000,
-      "quota": "1GB"
-    },
-    {
-      "id": "P002",
-      "name": "Paket Harian 2GB",
-      "price": 20000,
-      "quota": "2GB"
-    },
-    {
       "id": "P003",
       "name": "Paket Bulanan 10GB",
       "price": 74990,
-      "quota": "10GB"
+      "quota": "10GB",
+      "active": "30 hari"
     },
     {
       "id": "P004",
       "name": "Paket Special 5G 12GB",
       "price": 89900,
-      "quota": "12GB"
+      "quota": "12GB",
+      "active": "30 hari"
     },
     {
       "id": "P005",
       "name": "Paket Combo 5G 16GB ",
       "price": 59000,
-      "quota": "16GB"
+      "quota": "16GB",
+      "active": "28 hari"
+    },
+    {
+      "id": "P006",
+      "name": "Hyper 5G",
+      "price": 110000,
+      "quota": "55 GB",
+      "active": "60 hari"
+    },
+    {
+      "id": "P006",
+      "name": "Super Seru",
+      "price": 70000,
+      "quota": "36 GB",
+      "active": "28 hari"
     }
   ],
   "transactions": [
-    {
-      "id": "T001",
-      "userId": "1",
-      "packageId": "P001",
-      "date": "2025-11-19",
-      "status": "succes"
-    },
     {
       "id": "T002",
       "userId": "1",
       "packageId": "P005",
       "date": "2025-11-20",
       "status": "pending"
+    },
+    {
+      "id": "T003",
+      "userId": "2",
+      "packageId": "P006",
+      "date": "2025-11-30",
+      "status": "success"
     }
   ]
 }

@@ -7,6 +7,14 @@ import {
   deletePackage,
 } from "../../service/package";
 import type { PackageData } from "../../types";
+import { Card, Tag } from "antd";
+import {
+  GiftOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  DatabaseOutlined,
+  DollarOutlined,
+} from "@ant-design/icons";
 
 export default function PackageList() {
   const [packages, setPackages] = useState<PackageData[]>([]);
@@ -29,7 +37,9 @@ export default function PackageList() {
 
   const openModal = (record?: PackageData) => {
     setEditingData(record || null);
-    form.setFieldsValue(record || { id: "", name: "", price: 0, quota: "" });
+    form.setFieldsValue(
+      record || { id: "", name: "", price: 0, quota: "", active: "" }
+    );
     setIsModalOpen(true);
   };
 
@@ -54,30 +64,8 @@ export default function PackageList() {
     fetchData();
   };
 
-  const columns = [
-    { title: "ID", dataIndex: "id" },
-    { title: "Nama Paket", dataIndex: "name" },
-    { title: "Harga", dataIndex: "price" },
-    { title: "Kuota", dataIndex: "quota" },
-    {
-      title: "Action",
-      render: (_: any, record: PackageData) => (
-        <>
-          <Button type="link" onClick={() => openModal(record)}>
-            Edit
-          </Button>
-          <Button danger type="link" onClick={() => handleDelete(record.id)}>
-            Delete
-          </Button>
-        </>
-      ),
-    },
-  ];
-
   return (
     <div>
-      <h2>Daftar Packages</h2>
-
       <Button
         type="primary"
         style={{ marginBottom: 16 }}
@@ -86,13 +74,65 @@ export default function PackageList() {
         + Tambah Paket
       </Button>
 
-      <Table
-        rowKey="id"
-        columns={columns}
-        dataSource={packages}
-        loading={loading}
-      />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          gap: "20px",
+        }}
+      >
+        {packages.map((pkg) => (
+          <Card
+            key={pkg.id}
+            hoverable
+            style={{
+              borderRadius: 12,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+            }}
+            cover={
+              <div
+                style={{
+                  background: "#1677ff",
+                  padding: "20px",
+                  color: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  borderTopLeftRadius: 12,
+                  borderTopRightRadius: 12,
+                }}
+              >
+                <GiftOutlined style={{ fontSize: 40, marginBottom: 8 }} />
+                <h3 style={{ margin: 0, fontSize: 18 }}>{pkg.name}</h3>
+              </div>
+            }
+            actions={[
+              <EditOutlined onClick={() => openModal(pkg)} />,
+              <DeleteOutlined
+                style={{ color: "red" }}
+                onClick={() => handleDelete(pkg.id)}
+              />,
+            ]}
+          >
+            <p style={{ marginBottom: 6 }}>
+              <DatabaseOutlined /> <b>Quota:</b> {pkg.quota}
+            </p>
 
+            <p style={{ marginBottom: 10 }}>
+              <DollarOutlined /> <b>Price:</b>{" "}
+              <span style={{ color: "#1677ff", fontWeight: 600 }}>
+                Rp {pkg.price.toLocaleString()}
+              </span>
+            </p>
+
+            <Tag color="blue" style={{ borderRadius: 6 }}>
+              Active: {pkg.active}
+            </Tag>
+          </Card>
+        ))}
+      </div>
+
+      {/* Modal Create/Edit Package */}
       <Modal
         title={editingData ? "Edit Paket" : "Tambah Paket"}
         open={isModalOpen}
@@ -122,6 +162,13 @@ export default function PackageList() {
 
           <Form.Item label="Kuota" name="quota" rules={[{ required: true }]}>
             <Input placeholder="5GB" />
+          </Form.Item>
+          <Form.Item
+            label="Masa Aktif"
+            name="active"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="7 Hari" />
           </Form.Item>
         </Form>
       </Modal>

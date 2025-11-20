@@ -35,3 +35,8 @@ npx json-server db.json
 ```bash
 npm run dev
 ```
+
+## ⏰ Waktu Pengerjaan
+
+- **Tanggal Mulai:** 18 November 2025
+- **Tanggal Selesai:** 20 November 2025

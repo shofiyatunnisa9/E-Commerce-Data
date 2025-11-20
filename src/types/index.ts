@@ -10,6 +10,7 @@ export interface PackageData {
   name: string;
   price: number;
   quota: string;
+  active: string;
 }
 
 export interface TransactionData {
@@ -18,6 +19,11 @@ export interface TransactionData {
   packageId: string;
   date: string;
   status: string;
+}
+export interface UserData {
+  id: string;
+  name: string;
+  email: string;
 }
 
 export interface AuthContextType {

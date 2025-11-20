@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import PackageList from "../pages/packages/PackageList";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import TransactionList from "../pages/transactions/TransactionList";
+import CustomerList from "../pages/customers/Customer";
 
 export default function AppRoutes() {
   return (
@@ -11,7 +12,7 @@ export default function AppRoutes() {
         path="/"
         element={
           <DashboardLayout>
-            <div>Dashboard</div>
+            <div>Welcome to Dashboard E - Commerce Data</div>
           </DashboardLayout>
         }
       />
@@ -29,6 +30,14 @@ export default function AppRoutes() {
         element={
           <DashboardLayout>
             <TransactionList />
+          </DashboardLayout>
+        }
+      />
+      <Route
+        path="/customers"
+        element={
+          <DashboardLayout>
+            <CustomerList />
           </DashboardLayout>
         }
       />
